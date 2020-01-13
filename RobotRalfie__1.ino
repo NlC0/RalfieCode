@@ -80,3 +80,32 @@ void adjustTurn
   digitalWrite( breakA , HIGH);  
   analogWrite( pwmA, sensorValueMidR); //if turn is right read sensroValue left
 }
+
+void stopFunction
+{
+  /*It is supposed to move forward for 2 seconds and then stop
+  */
+  //forward @ Channel A right side
+  digitalWrite( dirA  , HIGH);
+  digitalWrite( breakA , HIGH);
+  analogWrite( pwmA, 150 );
+
+  //forward @ Channel B left side
+  digitalWrite(dirB, HIGH);
+  digitalWrite(breakB, HIGH);
+  analogWrite(pwmB, 150);
+
+  delay(2000);                      //delay of 2 seconds
+
+  //forward @ Channel B left side
+  digitalWrite(dirB, HIGH);
+  digitalWrite(breakB, HIGH);
+  analogWrite(pwmB, 0);            //sensorValueMidL = 0
+
+  //forward @ Channel A right side
+  digitalWrite( dirA  , HIGH);
+  digitalWrite( breakA , HIGH);
+  analogWrite( pwmA, 0 );            //sensorValueMidR = 0
+
+  //delay(1000);        //not sure if this delay is needed  
+}
